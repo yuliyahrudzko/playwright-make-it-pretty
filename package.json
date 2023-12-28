@@ -1,0 +1,23 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "playwright api task",
+  "main": "index.js",
+  "scripts": {
+    "start:ui": "playwright test --ui",
+    "start": "playwright test",
+    "test:reports": "playwright show-report",
+    "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx,.json --fix"
+  },
+  "author": "yuliya.grudko@mail.ru",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.39.0",
+    "@types/node": "^20.8.10",
+    "@typescript-eslint/eslint-plugin": "^6.16.0",
+    "@typescript-eslint/parser": "^6.16.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react": "^7.33.2",
+    "typescript": "^5.3.3"
+  }
+}
