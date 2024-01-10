@@ -19,6 +19,8 @@
         "quotes": ["warn", "single"], // использовать одинарные кавычки
         "indent": ["error", 2, { "SwitchCase": 1 }], //Обеспечение единообразия отступов 
         "spaced-comment": ["error", "always", { "markers": ["/"] }], //Это правило обеспечивает согласованность интервалов после начала комментария // или /*. (If "always" then the // or /* must be followed by at least one whitespace)
-        "camelcase": ["error", { "ignoreGlobals": true }] // имена переменных и функций в стиле camelCase
+        "camelcase": ["error", { "ignoreGlobals": true }], // имена переменных и функций в стиле camelCase
+        // Note: you must disable the base rule as it can report incorrect errors
+        "@typescript-eslint/no-unused-vars": "off"
     }
 }

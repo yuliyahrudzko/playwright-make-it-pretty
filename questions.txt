@@ -1,1 +1,5 @@
-1. object is possibly 'undefined' -> optional chaining
+1. object is possibly 'undefined' -> optional chaining 
+   что такое и для чего используется?
+2. eslint какие rules наиболее часто используются
+3. coinfig file разобрать более подробно
+4. logger
