@@ -42,13 +42,13 @@ test('Task 4', async ({ page, context }) => {
   });
 
   await test.step('Block images via page.route', async () => {
-    // Once route is enabled, every request matching the url pattern will stall unless it's continued, fulfilled or aborted
-    // Block .png and .jpeg images
+    //Once route is enabled, every request matching the url pattern will stall unless it's continued, fulfilled or aborted
+    //Block .png and .jpeg images
     await page.route(/.(png|jpeg|img)$/, route => route.abort());
   });
 
   await test.step('Veify status code of GET request', async () => {
-    // Returns the matched response
+    //Returns the matched response
     responsePromise = page.waitForResponse(response =>
       response.url() === 'https://demoqa.com/BookStore/v1/Books' && response.status() === 200
     );
@@ -57,7 +57,7 @@ test('Task 4', async ({ page, context }) => {
   await test.step('Make a screenshot of the Books page', async () => {
     await page.locator('#gotoStore').click();
   
-    // await заставит интерпретатор JavaScript ждать до тех пор, пока промис справа от await не выполнится
+    //await заставит интерпретатор JavaScript ждать до тех пор, пока промис справа от await не выполнится
     booksResponse = await responsePromise;
   
     await expect(page).toHaveURL(/.*books/);
@@ -66,15 +66,15 @@ test('Task 4', async ({ page, context }) => {
   });
 
   await test.step('Verify status code of GET request', async () => {
-    // we assert by using expect condition for the ok message and status code 200.
+    //we assert by using expect condition for the ok message and status code 200.
     expect(booksResponse.ok()).toBeTruthy();
 
     expect(booksResponse.status()).toBe(200);
   });
 
   await test.step('Verify that number of books on the UI = number of books in the body ', async () => {
-    // returns the JSON representation of response body.
-    // This method will throw if the response body is not parsable via JSON.parse
+    //returns the JSON representation of response body.
+    //This method will throw if the response body is not parsable via JSON.parse
     const booksCountInResponse = await booksResponse.json().then(data => {
       return data.books.length;
     });
@@ -89,17 +89,17 @@ test('Task 4', async ({ page, context }) => {
 
     console.log(`New page count should be ${newPageCount}`);
 
-    // page.route() to mock network in a single page.
+    //page.route() to mock network in a single page.
     page.route('https://demoqa.com/BookStore/v1/Book?**', async route => {
-      // Fetch original response.
+      //Fetch original response.
       const response = await route.fetch();
       let body = await response.text();
 
       body = body.replace(await response.json().then(data => data.pages), newPageCount);
       route.fulfill({
-        // Pass all fields from the response.
+        //Pass all fields from the response.
         response,
-        // Override response body.
+        //Override response body.
         body
       });
     });
